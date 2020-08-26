@@ -258,3 +258,302 @@ Output: {name: "Jay", lastName: "Guntuku", age: 21}
 ```
 ----------------------------------------------------------
 
+## **Destructuring**
+
+It allows us to Unpack arrays or Objects into a bunch of variables which makes working with arrays and objetcs more convenient
+
+```
+const name = "Jayakiran Guntuku";
+const nameArr = name.split(' ');
+
+console.log(nameArr);
+
+Output: ["Jayakiran", "Guntuku"]
+
+//using Destructuring concept
+
+let [firstName, lastName] = nameArr;
+console.log(firstName);
+console.log(lastName);
+
+Output: Jayakiran
+        Guntuku
+```
+it is storing the array values with respect to sequence order.
+
+```
+let [lastName, firstName] = nameArr;
+console.log(lastName);
+console.log(firstName);
+
+Output: Jayakiran
+        Guntuku
+```
+In the case of Objects, we use this concept as follows
+
+```
+const person = {
+    firstName: "Jayakiran",
+    lastName: "Guntuku",
+    age: 21
+}
+
+let {firstName, lastName} = person;
+console.log(firstName);
+console.log(lastName);
+
+Output: Jayakiran
+        Guntuku
+```
+
+```
+let firstName= "Jayakiran",
+let lastName= "Guntuku",
+let age= 21
+const person = {
+    firstName,
+    lastName,
+    age
+}
+
+console.log(person);
+
+Output: {firstName: "Jayakiran", lastName: "Guntuku", age: 21}
+```
+---------------------------------------------------------
+
+## **Array Functions: map()**
+
+map() iterates the array for us and we can pass a callback fucntion to perform some operation in each array item. The updated values can be returned by the callback function to create a new array.
+
+Syntax: `arr.map((item)=>{//callbackfunction})`
+
+```
+const arr = [1,2,3,4,5];
+
+let newArr = arr.map((item)=>{
+    //console.log(item);
+    return item*2;
+});
+console.log(arr);
+console.log(newArr);
+
+Output: [1,2,3,4,5]
+        [2,4,6,8,10]
+```
+In the case of Objects, we use this concept as follows
+
+```
+const arr = [
+    {
+        name: "Jayakiran Guntuku",
+        experience: 2,
+        Role: "Software Developer"
+    },
+    {
+        name: "Maneesh Jella",
+        experience: 3,
+        Role: "Hardware Developer"
+    },
+    {
+        name: "Uday",
+        experience: 4,
+        Role: "Petroleum Engineer"
+    }
+]
+
+let newArr = arr.map((item, pos)=> {
+    console.log(data);
+    return {
+        name: data.name,
+        experience: data.experience
+    };
+});
+console.log(arr);
+console.log(newArr);
+
+Output: 
+    {
+        name: "Jayakiran Guntuku",
+        experience: 2,
+        Role: "Software Developer"
+    },
+    {
+        name: "Maneesh Jella",
+        experience: 3,
+        Role: "Hardware Developer"
+    },
+    {
+        name: "Uday",
+        experience: 4,
+        Role: "Petroleum Engineer"
+    }
+
+    0:
+       name: "Jayakiran Guntuku"
+       experience: 2
+    1:
+       name: "Maneesh Jella"
+       experience: 3
+    2:
+       name: "Uday",
+       experience: 4,
+```
+-------------------------------------------------------
+## **Array Functions: reduce()**
+
+reduce() also iterates the array for us and we can pass a callback fucntion to perform some operation in each array item. The difference is reduce() passes the result of callback from one iteration to the next one. This callback result is an Accumulator. The Accumulator can be anything (integer, string, object or array) and must be instantiated and passed when calling reduce().
+
+Syntax: `arr.reduce((acc, item)=>{//callbackfunction},acc_default_value)`
+
+```
+const arr = [1,2,3,4,5];
+
+const result = arr.reduce((acc, item)=>{
+    return acc + item;
+},0);
+
+console.log(result);
+
+Output: 15
+```
+---------------------------------------------------------
+## **Array Functions: filter()**
+
+It iterates through the array to create a new array. We can decide which elements should be added in the new array based on some conditions.
+
+Syntax: `arr.filter(item =>{//Return true/false to add/skip the current item})`
+
+```
+const arr = [1,2,3,4,5];
+const resultArr = arr.filter(item =>{
+    return true; //Output:  [1,2,3,4,5]
+    return false; //Output: 
+    return item % 2 ==0 //Output: [2,4] 
+});
+
+console.log(resultArr);
+```
+----------------------------------------------------------
+## **Array Functions: find() and findIndex()**
+
+**find()** is used to search for element in the array that matches some condition. it returns the first element that matches the condition.
+
+**findIndex()** returns the index of the element.
+```
+const arr = [1,2,3,4,5];
+const resultArr = arr.find(item =>{
+    return true; //Output: 1
+    return false; //Output: undefined
+    return item % 2 === 0 //Output: 2 
+});
+
+console.log(resultArr);
+
+const resultArr = arr.findIndex(item =>{
+    return item % 2 === 0 //Output: 1 
+});
+
+console.log(resultArr);
+```
+---------------------------------------------------------
+## **Classes**
+
+**Syntax:**
+```
+class ClassName{
+    constructor(){
+        //initialize Properties here;
+    }
+    //Methods Outside constructor
+    method1 = () =>{
+        //Method Body
+    }
+}
+```
+**Example:**
+```
+function person(name, birthYear){
+    this.name = name;
+    this.birthYear = birthYear;
+
+    this.getDetails = function(){
+        return "Name: " + this.name + "and age: " + (2020- this.birthYear);
+    }
+}
+
+var jay = new person('jay', 1999);
+console.log(jay.getDetails);
+
+Output: Name: jay and age: 21
+```
+```
+class person{
+    constructor(name, birthYear){
+        this.name = name;
+        this.birthYear = birthYear;
+    }
+    
+    getDetails = function(){
+        return `Name: ${this.name} and age: ${2019-this.birthYear} `
+    }
+}
+
+var jay = new person('jay', 1999);
+console.log(jay.getDetails);
+
+Output: Name: jay and age: 21
+```
+--------------------------------------------------------
+## **Inheritence**
+**Syntax:**
+```
+class ChildClass{
+    //body
+}
+class ChildClass extends ParentClass{
+    //body
+}
+```
+**Example:**
+```
+class person{
+    constructor(name, birthYear){
+        this.name = name;
+        this.birthYear = birthYear;
+    }
+    
+    getDetails = function(){
+        return `Name: ${this.name} and age: ${2019-this.birthYear} `
+    }
+}
+
+class Pilot extends Person{
+    constructor(name, birthYear, exp, type, license){
+        super(name, birthYear);
+        this.experience = exp;
+        this.type = type;
+        this.license = license;
+    }
+    
+    getData = function(){
+        return `${this.getDetails} and Experience: ${this.experience} and type: ${this.type} `
+    }
+}
+
+var jay = new Pilot("Uday", 1999, 28, 'Private', 'XYZ123');
+console.log(jay);
+jay.getData;
+```
+----------------------------------------------------------
+## **Callbacks and Promises**
+
+**Syntax:**
+```
+const myPromise = new Promise((resolve, reject) => {
+    //promise body
+    //call resolve() when the operation is complete
+    //call reject() when the operation is failed.
+})
+```
+
